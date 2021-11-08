@@ -13,8 +13,9 @@ window.addEventListener("load",function(){
             this.value= this.value+ averiguaLetraDni();
             
         }
-
+     
     }
+ 
     function averiguaLetraDni()
     {
     cadena="TRWAGMYFPDXBNJZSQVHLCKET";

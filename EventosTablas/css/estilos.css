@@ -1,5 +1,16 @@
-select{
-    /* width:200px; */
-    height:200px;
-    width: max-content;
+
+table{
+    background-color:gray;
+    color: white;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+  
 }
+
+tbody{
+    background-color: white;
+    text-align: center;
+    color: black;
+    
+}
+
