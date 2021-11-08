@@ -3,7 +3,7 @@ window.addEventListener("load",function(){
     const dni= document.getElementById("dni");
     const Fecha_nac= document.getElementById("Fecha_nac");
     
-        const newAlumNombre=document.getElementById("nombre");
+        const nombre=document.getElementById("nombre");
 
     dni.onkeyup=function(){
 
@@ -37,22 +37,50 @@ window.addEventListener("load",function(){
 
     document.getElementById("insertar").onclick=function(){
            
-        insertar(dni.value);
-        insertar(newAlumNombre.value);
-        insertar(Fecha_nac.value);
+        insertar(dni.value,nombre.value,Fecha_nac.value);
+   
    
     };
 
-    function insertar(Datos){
-        var option=document.createElement("option");        
-        option.innerHTML=Datos;      
-        var tbody=document.getElementById("newAlum");
-        tbody.appendChild(option).value;
+    // function insertar(Datos){
+        
+    //     var option=document.createElement("option");        
+    //     option.innerHTML=Datos;      
+    //     var tbody=document.getElementById("newAlum");
+    //     tbody.appendChild(option).value;
  
 
 
 
+
+    // }
+
+    function insertar(dni,nombre,Fecha_nac){
+        var tr=document.createElement("tr");
+        var td1=document.createElement("td");
+        var td2=document.createElement("td");
+        var td3=document.createElement("td");
+        // // tdX.onclick=borrar;
+        // var tdE=document.createElement("td");
+        // // tdE.onclick=editar;
+
+        // var tdC=document.createElement("td");
+        // // tdC.onclick=cancelar;
+        
+        td1.innerHTML=dni;
+        td2.innerHTML=nombre;
+        td3.innerHTML=Fecha_nac;
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        // tr.appendChild(tdX);
+        // tr.appendChild(tdE);
+        // tr.appendChild(tdC);
+        var tbody=document.getElementById("newAlum");
+        tbody.appendChild(tr);
+        
     }
+
 
 
 
