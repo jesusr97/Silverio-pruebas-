@@ -1,0 +1,63 @@
+#contenedor{
+    position: relative;
+    height: 300px;
+    width: 100%;
+    overflow-y: scroll;
+    width: 60%;
+    
+    
+  
+}
+
+.propio{
+    background-color: #E0FBBF;
+    color: black;
+    padding: 8px;
+    border-radius: 6px;
+    margin: 5px;
+    width: 70%;
+    
+    
+}
+
+.otros{
+
+    background-color: whitesmoke;
+
+    color: black;
+    padding: 8px;
+   border-radius: 6px;
+   margin: 5px;
+   width: 50%;
+
+}
+div  .propio .usuario {
+    color: blue;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+div  .otros .usuario {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+div .hora{
+    margin-top: -17px;
+    text-align: right;
+    font-size: 70%;
+}
+
+div .otros{
+    width: 460px;
+}
+
+div .propio{
+    width: 460px;
+    float: right;
+}
+
+textarea{
+    width: 1200px;
+    height: 120px;
+    font-size: 16px;
+}
