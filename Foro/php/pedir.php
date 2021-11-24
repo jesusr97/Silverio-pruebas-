@@ -21,7 +21,9 @@ while($fila=mysqli_fetch_row($respuesta)){
     $objMensaje ->id=$fila[0];
     $objMensaje ->usuario=$fila[1];
     $objMensaje ->mensaje=$fila[2];
-    $objMensaje ->fecha=$fila[3];
+    $objMensaje ->archivos=$fila[3];
+    $objMensaje ->fecha=$fila[4];
+    
 
     $object ->mensajes[]=$objMensaje;
     $ultimo=$fila[0];

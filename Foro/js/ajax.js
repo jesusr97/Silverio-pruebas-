@@ -5,6 +5,7 @@ const form1=document.getElementById("form1");
 const contenedor=document.getElementById("contenedor");
 
 var ultimo=0;
+
 var usuario=form1["usuario"];
 var mensaje=form1["mensaje"];
 var archivos=form1["archivos"];
@@ -71,64 +72,63 @@ function crearContenido(mensaje,usuario){
 }
 
 
-function EnviarMensaje(ev){
+ function EnviarMensaje(ev){
     //no hagas lo que estas acostumbrado a hacer
     ev.preventDefault();
     if(usuario.value !="" && mensaje.value !=""){
-        var texto=encodeURI("usuario="+ usuario.value + "&" +
-        "mensaje="+ mensaje.value+"archivos="+ archivos.value);
-        
-        const ajax=new XMLHttpRequest();
-        ajax.onreadystatechange=function(){
-            if(ajax.readyState==4 && ajax.status==200){
+        var formData=new FormData();
+        formData.append("usuario",usuario.value);
+        formData.append("mensaje",mensaje.value);
+        if(archivos.files.length>0){
+            formData.append("archivos",archivos.files[0]);
 
-                var respuesta=ajax.responseText;
+        }
+        fetch("php/insertar.php",{
+
+            method:"POST",
+            body:formData
+
+        }).then(response => response.json())
+          .catch(error=>console.error("Error",error))
+          .then(response => {
+
+            if(response.respuesta){
+
+                // var respuesta=ajax.responseText;
                 // alert(respuesta);
-                if(respuesta=="OK"){
+                // if(respuesta=="OK"){
                     form1["mensaje"].value="";
                     form1["mensaje"].focus();
                     form1["archivos"].value="";
                     form1["archivos"].focus();
-                }
+                // }
 
             }
 
-        }
-        ajax.open("POST","php/insertar.php");
-        ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        ajax.send(texto);
+          })
+
+        // const ajax=new XMLHttpRequest();
+        // ajax.onreadystatechange=function(){
+            // if(ajax.readyState==4 && ajax.status==200){
+
+            //     var respuesta=ajax.responseText;
+            //     // alert(respuesta);
+            //     if(respuesta=="OK"){
+            //         form1["mensaje"].value="";
+            //         form1["mensaje"].focus();
+            //         form1["archivos"].value="";
+            //         form1["archivos"].focus();
+            //     }
+
+            // }
+
+        // }
+        // ajax.open("POST","php/insertar.php");
+        // ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        // ajax.send(texto);
     }
   
 }
-
-    function EnviarArchivos(ev){
-        //no hagas lo que estas acostumbrado a hacer
-        ev.preventDefault();
-        if(archivos.value !=""){
-            var archivo=encodeURI("archivos="+ archivos.value);
-
-            const ajax=new XMLHttpRequest();
-            ajax.onreadystatechange=function(){
-                if(ajax.readyState==4 && ajax.status==200){
-
-                    var respuesta=ajax.responseText;
-                    // alert(respuesta);
-                    if(respuesta=="OK"){
-                        form1["archivos"].value="";
-                        form1["archivos"].focus();
-                    }
-
-                }
-
-            }
-            ajax.open("POST","php/insertar.php");
-            ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            ajax.send(archivo);
-        }
-    
-    }
-
-
 
 
 })
