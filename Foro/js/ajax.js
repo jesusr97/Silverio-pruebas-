@@ -7,8 +7,11 @@ const contenedor=document.getElementById("contenedor");
 var ultimo=0;
 var usuario=form1["usuario"];
 var mensaje=form1["mensaje"];
+var archivos=form1["archivos"];
 
 enviar.onclick=EnviarMensaje;
+
+
 
 var tmp1=this.setInterval(pedirMensajes,5000);
 
@@ -73,8 +76,8 @@ function EnviarMensaje(ev){
     ev.preventDefault();
     if(usuario.value !="" && mensaje.value !=""){
         var texto=encodeURI("usuario="+ usuario.value + "&" +
-        "mensaje="+ mensaje.value);
-
+        "mensaje="+ mensaje.value+"archivos="+ archivos.value);
+        
         const ajax=new XMLHttpRequest();
         ajax.onreadystatechange=function(){
             if(ajax.readyState==4 && ajax.status==200){
@@ -84,6 +87,8 @@ function EnviarMensaje(ev){
                 if(respuesta=="OK"){
                     form1["mensaje"].value="";
                     form1["mensaje"].focus();
+                    form1["archivos"].value="";
+                    form1["archivos"].focus();
                 }
 
             }
@@ -95,5 +100,35 @@ function EnviarMensaje(ev){
     }
   
 }
+
+    function EnviarArchivos(ev){
+        //no hagas lo que estas acostumbrado a hacer
+        ev.preventDefault();
+        if(archivos.value !=""){
+            var archivo=encodeURI("archivos="+ archivos.value);
+
+            const ajax=new XMLHttpRequest();
+            ajax.onreadystatechange=function(){
+                if(ajax.readyState==4 && ajax.status==200){
+
+                    var respuesta=ajax.responseText;
+                    // alert(respuesta);
+                    if(respuesta=="OK"){
+                        form1["archivos"].value="";
+                        form1["archivos"].focus();
+                    }
+
+                }
+
+            }
+            ajax.open("POST","php/insertar.php");
+            ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            ajax.send(archivo);
+        }
+    
+    }
+
+
+
 
 })

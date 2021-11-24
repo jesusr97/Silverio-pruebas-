@@ -7,8 +7,26 @@
         $sql="INSERT INTO mensajes (`id`, `usuario`, `mensaje`, `hora`) VALUES (NULL,'".$usuario . "', '${mensaje}',NOW())";
         mysqli_query($conec,$sql);
         echo "OK";
+
+
+        
     }
     else{
         echo "ERROR";
     }
+
+    if (isset($_POST['archivos'])){
+        $archivos=$_POST["archivos"];
+    
+        $conec=mysqli_connect("localhost","root","");
+        $db=mysqli_select_db($conec,'foro');
+        $sql="INSERT INTO archivos (`archivos`) VALUES ('${archivos}')";
+        mysqli_query($conec,$sql);
+        echo "OK";
+    }
+    else{
+        echo "ERROR";
+    }
+
+
 ?>
