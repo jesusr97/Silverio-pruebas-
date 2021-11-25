@@ -10,6 +10,10 @@ var usuario=form1["usuario"];
 var mensaje=form1["mensaje"];
 var archivos=form1["archivos"];
 
+if(this.localStorage.getItem("usuario")!=""){
+
+    usuario.value=this.localStorage.getItem("usuario");
+}
 enviar.onclick=EnviarMensaje;
 
 
@@ -62,9 +66,14 @@ function crearContenido(mensaje,usuario){
     div4.className="mensaje";
     div4.innerHTML=mensaje.mensaje;
 
+    const div5=document.createElement("img");
+    div5.className="archivos";
+    div5.setAttribute("src","data:image/jpeg;base64,"+mensaje.archivos);
+
     div1.appendChild(div2);
     div1.appendChild(div3);
     div1.appendChild(div4);
+    div1.appendChild(div5);
 
    return div1;
 
@@ -76,6 +85,7 @@ function crearContenido(mensaje,usuario){
     //no hagas lo que estas acostumbrado a hacer
     ev.preventDefault();
     if(usuario.value !="" && mensaje.value !=""){
+        localStorage.setItem("usuario",usuario.value);
         var formData=new FormData();
         formData.append("usuario",usuario.value);
         formData.append("mensaje",mensaje.value);
