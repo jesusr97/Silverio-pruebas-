@@ -10,10 +10,10 @@ var usuario=form1["usuario"];
 var mensaje=form1["mensaje"];
 var archivos=form1["archivos"];
 
-if(this.localStorage.getItem("usuario")!=""){
+// if(this.localStorage.getItem("usuario")!=""){
 
-    usuario.value=this.localStorage.getItem("usuario");
-}
+//     usuario.value=this.localStorage.getItem("usuario");
+// }
 enviar.onclick=EnviarMensaje;
 
 
@@ -50,7 +50,7 @@ function pedirMensajes(){
 
 function crearContenido(mensaje,usuario){
     var claseUsuario=(mensaje.usuario==usuario)?"propio":"otros";
-
+    
     const div1=document.createElement("div");
     div1.className=claseUsuario;
 
@@ -66,14 +66,21 @@ function crearContenido(mensaje,usuario){
     div4.className="mensaje";
     div4.innerHTML=mensaje.mensaje;
 
-    const div5=document.createElement("img");
-    div5.className="archivos";
-    div5.setAttribute("src","data:image/jpeg;base64,"+mensaje.archivos);
 
     div1.appendChild(div2);
     div1.appendChild(div3);
     div1.appendChild(div4);
-    div1.appendChild(div5);
+    // if(archivos.files.length>0){
+        
+            const div5=document.createElement("img");
+            div5.className="archivos";
+            div5.setAttribute("src","data:image/jpeg;base64,"+mensaje.archivos);
+            div1.appendChild(div5);
+        
+        
+//     }
+  
+    
 
    return div1;
 
@@ -104,38 +111,18 @@ function crearContenido(mensaje,usuario){
 
             if(response.respuesta){
 
-                // var respuesta=ajax.responseText;
-                // alert(respuesta);
-                // if(respuesta=="OK"){
+              
                     form1["mensaje"].value="";
                     form1["mensaje"].focus();
                     form1["archivos"].value="";
                     form1["archivos"].focus();
-                // }
+          
 
             }
 
           })
 
-        // const ajax=new XMLHttpRequest();
-        // ajax.onreadystatechange=function(){
-            // if(ajax.readyState==4 && ajax.status==200){
 
-            //     var respuesta=ajax.responseText;
-            //     // alert(respuesta);
-            //     if(respuesta=="OK"){
-            //         form1["mensaje"].value="";
-            //         form1["mensaje"].focus();
-            //         form1["archivos"].value="";
-            //         form1["archivos"].focus();
-            //     }
-
-            // }
-
-        // }
-        // ajax.open("POST","php/insertar.php");
-        // ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        // ajax.send(texto);
     }
   
 }

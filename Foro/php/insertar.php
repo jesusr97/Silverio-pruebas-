@@ -7,7 +7,15 @@
         $imgContenido=base64_encode($imgContenido);
         $conec=mysqli_connect("localhost","root","");
         $db=mysqli_select_db($conec,'foro');
-        $sql="INSERT INTO mensajes (`id`, `usuario`, `mensaje`, `archivos`, `hora`) VALUES (NULL,'${usuario}', '${mensaje}', '${imgContenido}' ,NOW())";
+        
+        if($_FILES['archivos']==""){
+
+           $sql="INSERT INTO mensajes (`id`, `usuario`, `mensaje`, `archivos`, `hora`) VALUES (NULL,'${usuario}', '${mensaje}', NULL ,NOW())";
+        }
+        else{
+            $sql="INSERT INTO mensajes (`id`, `usuario`, `mensaje`, `archivos`, `hora`) VALUES (NULL,'${usuario}', '${mensaje}', '${imgContenido}' ,NOW())";
+        }
+       
 
         mysqli_query($conec,$sql);
         echo "OK";
