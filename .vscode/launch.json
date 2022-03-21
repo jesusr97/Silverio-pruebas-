@@ -3,14 +3,14 @@
     "configurations": [
         {
             "name": "Launch localhost in Microsoft Edge",
-            "type": "edge",
+            "type": "chrome",
             "request": "launch",
             "url": "http://localhost:80/Proyectos/Silverio/",
             "webRoot": "${workspaceFolder}/wwwroot"
         },
         {
             "name": "Launch index.html in Microsoft Edge",
-            "type": "edge",
+            "type": "chrome",
             "request": "launch",
             "file": "${workspaceFolder}/index.html"
         },
